@@ -9,14 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Install composer
+      - name: Init composer
         uses: docker://composer
 
       - name: Install dependencies
         working-directory: ${{ runner.workspace }}
         run: cd izhevsk && composer install
 
-      - name: Build
+      - name: Init PHP
         uses: docker://php:latest
 
       - name: Run tests
