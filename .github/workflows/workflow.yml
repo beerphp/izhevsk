@@ -11,4 +11,6 @@ jobs:
 
       - name: build
         uses: docker://php:latest
+
+      - name: run tests
         run: ./vendor/bin/phpunit
