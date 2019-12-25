@@ -9,8 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: build
+      - name: Build
         uses: docker://php:latest
 
-      - name: run tests
+      - name: Run tests
+        working-directory: ${{ runner.workspace }}
         run: ./vendor/bin/phpunit
