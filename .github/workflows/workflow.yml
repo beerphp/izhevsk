@@ -16,4 +16,5 @@ jobs:
         working-directory: ${{ runner.workspace }}
         run: |
           cd izhevsk && \
+          ls -lh && \
           ./vendor/bin/phpunit
