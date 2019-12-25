@@ -9,6 +9,13 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Install composer
+        uses: docker://composer
+
+      - name: Install dependencies
+        working-directory: ${{ runner.workspace }}
+        run: cd izhevsk && composer install
+
       - name: Build
         uses: docker://php:latest
 
@@ -16,5 +23,4 @@ jobs:
         working-directory: ${{ runner.workspace }}
         run: |
           cd izhevsk && \
-          ls -lh && \
           ./vendor/bin/phpunit
