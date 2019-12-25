@@ -1,0 +1,21 @@
+{
+  "name": "beerphp/izhevsk",
+  "description": "Izhevsk PHP Community",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Aleksandr Kozhevnikov",
+      "email": "iamdevice@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=7.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.5"
+  },
+  "autoload-dev": {
+    "BeerPHP\\Izhevsk\\Test\\": "tests/"
+  }
+}

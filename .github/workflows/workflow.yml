@@ -1,0 +1,26 @@
+name: build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Init composer
+        uses: docker://composer
+
+      - name: Install dependencies
+        working-directory: ${{ runner.workspace }}
+        run: cd izhevsk && composer install
+
+      - name: Init PHP
+        uses: docker://php:latest
+
+      - name: Run tests
+        working-directory: ${{ runner.workspace }}
+        run: |
+          cd izhevsk && \
+          ./vendor/bin/phpunit
