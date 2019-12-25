@@ -14,4 +14,6 @@ jobs:
 
       - name: Run tests
         working-directory: ${{ runner.workspace }}
-        run: ./vendor/bin/phpunit
+        run: |
+          ls -lh
+          ./vendor/bin/phpunit
