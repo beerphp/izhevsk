@@ -20,11 +20,13 @@ jobs:
         uses: docker://composer
 
       - name: Checkout PHP
-        uses: docker://php:latest
+        uses: docker://php:cli-alpine
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit == false
-        run: cd izhevsk && composer install
+        run: |
+          ls -lh && \
+          composer install -d ./izhevsk
 
       - name: Run tests
         working-directory: ${{ runner.workspace }}
