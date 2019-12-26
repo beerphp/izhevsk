@@ -23,7 +23,7 @@ jobs:
         uses: docker://php:latest
 
       - name: Install dependencies
-        if: {{ steps.cache.outputs.cache-hit == false }}
+        if: ${{ steps.cache.outputs.cache-hit == false }}
         run: cd izhevsk && composer install
 
       - name: Run tests
