@@ -9,15 +9,23 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Cache PHP dependencies
+        id: cache
+        uses: actions/cache@v1
+        with:
+          path: ./vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+
       - name: Checkout composer
         uses: docker://composer
 
       - name: Checkout PHP
-        uses: docker://php:latest
+        uses: docker://php:cli-alpine
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit == false
+        run: composer install
 
       - name: Run tests
         working-directory: ${{ runner.workspace }}
-        run: |
-          cd izhevsk && \
-          composer install && \
-          ./vendor/bin/phpunit
+        run: cd izhevsk && ./vendor/bin/phpunit
