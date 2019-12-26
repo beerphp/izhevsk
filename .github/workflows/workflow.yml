@@ -10,6 +10,7 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Cache PHP dependencies
+        id: cache
         uses: actions/cache@v1
         with:
           path: ./vendor
@@ -22,7 +23,7 @@ jobs:
         uses: docker://php:latest
 
       - name: Install dependencies
-        if: {{ steps.Cache PHP dependencies.outputs.cache-hit }}
+        if: {{ steps.cache.outputs.cache-hit == false }}
         run: cd izhevsk && composer install
 
       - name: Run tests
