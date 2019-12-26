@@ -9,6 +9,12 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Cache PHP dependencies
+        uses: actions/cache@v1
+        with:
+          path: ./izhevsk/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+
       - name: Checkout composer
         uses: docker://composer
 
