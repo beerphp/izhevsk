@@ -12,7 +12,7 @@ jobs:
       - name: Cache PHP dependencies
         uses: actions/cache@v1
         with:
-          path: ./izhevsk/vendor
+          path: ./vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
 
       - name: Checkout composer
